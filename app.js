@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_KEY = 'AIzaSyDbefVCcgim-nUx__Ho0moJTWTGUurBPWY';
+    const API_KEY = 'xxxxxxxxxxxxxxx';
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent?key=${API_KEY}`;
 
     // Elementos del DOM
@@ -231,4 +231,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!navigator.onLine) {
         showToast('Modo sin conexión. Algunas funciones pueden no estar disponibles.');
     }
+
 });
