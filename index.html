@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VinumAI - Tu Sommelier Personal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#8c1d40">
+</head>
+<body>
+
+    <div id="app-container">
+        <!-- Pantalla de Inicio -->
+        <div id="home-screen" class="screen active">
+            <header class="app-header">
+                <h1>VinumAI</h1>
+                <p>Tu sommelier personal de bolsillo</p>
+            </header>
+            <main class="app-main">
+                <div class="action-buttons">
+                    <button id="scan-btn"><i class="icon">📷</i>Escanear Etiqueta</button>
+                    <button id="upload-btn"><i class="icon">🖼️</i>Subir Imagen</button>
+                    <button id="describe-btn"><i class="icon">✍️</i>Describir Vino</button>
+                </div>
+                <div class="cava-link">
+                    <button id="cava-btn">Mi Cava Digital</button>
+                </div>
+            </main>
+        </div>
+
+        <!-- Pantalla de Resultados -->
+        <div id="results-screen" class="screen">
+            <header class="screen-header">
+                <button class="back-btn" data-target="home-screen">‹ Volver</button>
+                <h2>Ficha de Cata</h2>
+            </header>
+            <main id="results-content" class="app-main"></main>
+        </div>
+
+        <!-- Pantalla Mi Cava -->
+        <div id="cava-screen" class="screen">
+            <header class="screen-header">
+                <button class="back-btn" data-target="home-screen">‹ Volver</button>
+                <h2>Mi Cava Digital</h2>
+            </header>
+            <div class="cava-controls">
+                <input type="search" id="cava-search" placeholder="Buscar en mi cava...">
+            </div>
+            <main id="cava-list" class="app-main"></main>
+        </div>
+
+    </div>
+
+    <!-- Elementos Ocultos -->
+    <input type="file" id="image-upload-input" accept="image/*" style="display: none;">
+    <input type="file" id="camera-input" accept="image/*" capture="environment" style="display: none;">
+
+    <!-- Overlay de Carga -->
+    <div id="loader" class="hidden">
+        <div class="spinner"></div>
+        <p>Analizando con Gemini...</p>
+    </div>
+
+    <!-- Notificaciones -->
+    <div id="toast" class="hidden"></div>
+
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => console.log('ServiceWorker registrado con éxito:', registration.scope))
+                    .catch(error => console.log('Fallo en el registro de ServiceWorker:', error));
+            });
+        }
+    </script>
+</body>
+</html>
